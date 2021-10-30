@@ -12,6 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node index.js",
     "start:dev": "nodemon index.js"
   },
   "repository": {
