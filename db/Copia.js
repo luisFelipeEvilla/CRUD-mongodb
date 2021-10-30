@@ -39,11 +39,41 @@ const getCopias = async () => {
             localField: 'edicion',
             foreignField: '_id',
             as: 'edicion'
-        },
-
+        }
     }, {
         $unwind: {
-            path: '$edicion',
+            path: "$edicion",
+            preserveNullAndEmptyArrays: true
+        }
+    }, {
+        $lookup: {
+            from: 'Libro',
+            localField: 'edicion.libro',
+            foreignField: '_id',
+            as: 'libro'
+        }
+    }, {
+        $unwind: {
+            path: "$libro",
+            preserveNullAndEmptyArrays: true
+        }
+    }, {
+        $lookup: {
+            from: 'Autorea',
+            localField: 'libro._id',
+            foreignField: 'libro',
+            as: 'autorea'
+        }
+    }, {
+        $lookup: {
+            from: 'Autor',
+            localField: 'autorea.autor',
+            foreignField: '_id',
+            as: 'autor'
+        }
+    }, {
+        $unwind: {
+            path: "$autor",
             preserveNullAndEmptyArrays: true
         }
     }];
@@ -67,11 +97,41 @@ const getCopia = async (id) => {
             localField: 'edicion',
             foreignField: '_id',
             as: 'edicion'
-        },
-
+        }
     }, {
         $unwind: {
-            path: '$edicion',
+            path: "$edicion",
+            preserveNullAndEmptyArrays: true
+        }
+    }, {
+        $lookup: {
+            from: 'Libro',
+            localField: 'edicion.libro',
+            foreignField: '_id',
+            as: 'libro'
+        }
+    }, {
+        $unwind: {
+            path: "$libro",
+            preserveNullAndEmptyArrays: true
+        }
+    }, {
+        $lookup: {
+            from: 'Autorea',
+            localField: 'libro._id',
+            foreignField: 'libro',
+            as: 'autorea'
+        }
+    }, {
+        $lookup: {
+            from: 'Autor',
+            localField: 'autorea.autor',
+            foreignField: '_id',
+            as: 'autor'
+        }
+    }, {
+        $unwind: {
+            path: "$autor",
             preserveNullAndEmptyArrays: true
         }
     }];

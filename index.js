@@ -6,6 +6,7 @@ const libros = require('./routes/libros');
 const ediciones = require('./routes/ediciones');
 const copias = require('./routes/copias');
 const usuarios = require('./routes/usuarios');
+const prestamos = require('./routes/prestamos');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use('/libros', libros);
 app.use('/ediciones', ediciones);
 app.use('/copias', copias);
 app.use('/usuarios', usuarios);
+app.use('/prestamos', prestamos);
 
 app.get('/', (req,res) => {
     res.send("Hello world").status(200);

@@ -6,7 +6,6 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     const ediciones = await Edicion.getEdiciones();
 
-    
     res.send(ediciones).status(200);
 });
 

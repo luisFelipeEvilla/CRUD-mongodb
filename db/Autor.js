@@ -2,7 +2,6 @@ const { MongoClient } = require('mongodb')
 const { DB_URL } = require('../config');
 const getConexionDB = require('../db/index');
 const { ObjectId } = require('mongodb');
-const autorea = require('./Autorea');
 
 const addAutor = async (nombre) => {
     const db = await getConexionDB();

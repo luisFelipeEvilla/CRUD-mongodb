@@ -17,6 +17,8 @@ const addEdicion = async (edicion) => {
 const updateEdicion = async (id, edicion) => {
     const db = await getConexionDB();
 
+    edicion.libro = ObjectId(edicion.libro);
+
     const result = await db.collection('Edicion').updateOne({ _id: ObjectId(id) }, { $set: { ...edicion } })
 
     return result;
