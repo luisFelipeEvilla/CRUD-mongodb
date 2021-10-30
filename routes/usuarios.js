@@ -10,6 +10,15 @@ router.get('/', async (req, res) => {
     res.send(usuarios).status(200);
 });
 
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    const usuario = await Usuario.getUsuario(id);
+
+    
+    res.send(usuario).status(200);
+});
+
 router.post('/', async (req, res) => {
     const { ...usuario } = req.body;
 

@@ -4,10 +4,21 @@ const Copia = require('../db/Copia');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const autores = await Copia.getCopiaes();
+    const copias = await Copia.getCopias();
 
     
-    res.send(autores).status(200);
+    res.send(copias).status(200);
+});
+
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    
+    console.log(id);
+
+    const copia = await Copia.getCopia(id);
+
+    
+    res.send(copia).status(200);
 });
 
 router.post('/', async (req, res) => {

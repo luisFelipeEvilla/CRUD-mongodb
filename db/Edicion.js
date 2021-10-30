@@ -17,7 +17,7 @@ const addEdicion = async (edicion) => {
 const updateEdicion = async (id, edicion) => {
     const db = await getConexionDB();
 
-    const result = await db.collection('Edicion').updateOne({_id: ObjectId(id)}, { $set: { ...edicion}})
+    const result = await db.collection('Edicion').updateOne({ _id: ObjectId(id) }, { $set: { ...edicion } })
 
     return result;
 }
@@ -25,7 +25,7 @@ const updateEdicion = async (id, edicion) => {
 const deleteEdicion = async (id) => {
     const db = await getConexionDB();
 
-    const result = await db.collection('Edicion').deleteOne({ _id: ObjectId(id)})
+    const result = await db.collection('Edicion').deleteOne({ _id: ObjectId(id) })
 
     return result
 }
@@ -40,7 +40,7 @@ const getEdiciones = async () => {
             foreignField: '_id',
             as: 'libro'
         },
-        
+
     }, {
         $unwind: {
             path: '$libro',
@@ -48,17 +48,41 @@ const getEdiciones = async () => {
         }
     }];
 
-    const Edicions = await db.collection('Edicion').aggregate(query).toArray();
+    const Ediciones = await db.collection('Edicion').aggregate(query).toArray();
 
-    return Edicions;
+    return Ediciones;
 }
 
-const getEdicion = async () => {
-    
+const getEdicion = async (id) => {
+    const db = await getConexionDB();
+
+    const query = [{
+        $match: {
+            _id: ObjectId(id)
+        }
+    }, {
+        $lookup: {
+            from: 'Libro',
+            localField: 'libro',
+            foreignField: '_id',
+            as: 'libro'
+        },
+
+    }, {
+        $unwind: {
+            path: '$libro',
+            preserveNullAndEmptyArrays: true
+        }
+    }];
+
+    const Ediciones = await db.collection('Edicion').aggregate(query).toArray();
+
+    return Ediciones;
 }
 
 module.exports = {
     getEdiciones,
+    getEdicion,
     addEdicion,
     updateEdicion,
     deleteEdicion

@@ -17,7 +17,7 @@ const addCopia = async (Copia) => {
 const updateCopia = async (id, Copia) => {
     const db = await getConexionDB();
 
-    const result = await db.collection('Copia').updateOne({_id: ObjectId(id)}, { $set: { ...Copia}})
+    const result = await db.collection('Copia').updateOne({ _id: ObjectId(id) }, { $set: { ...Copia } })
 
     return result;
 }
@@ -25,12 +25,12 @@ const updateCopia = async (id, Copia) => {
 const deleteCopia = async (id) => {
     const db = await getConexionDB();
 
-    const result = await db.collection('Copia').deleteOne({ _id: ObjectId(id)})
+    const result = await db.collection('Copia').deleteOne({ _id: ObjectId(id) })
 
     return result
 }
 
-const getCopiaes = async () => {
+const getCopias = async () => {
     const db = await getConexionDB();
 
     const query = [{
@@ -40,7 +40,7 @@ const getCopiaes = async () => {
             foreignField: '_id',
             as: 'edicion'
         },
-        
+
     }, {
         $unwind: {
             path: '$edicion',
@@ -53,12 +53,37 @@ const getCopiaes = async () => {
     return Copias;
 }
 
-const getCopia = async () => {
-    
+const getCopia = async (id) => {
+    const db = await getConexionDB();
+
+    const query = [{
+        $match: {
+            _id: ObjectId(id)
+        }
+    },
+    {
+        $lookup: {
+            from: 'Edicion',
+            localField: 'edicion',
+            foreignField: '_id',
+            as: 'edicion'
+        },
+
+    }, {
+        $unwind: {
+            path: '$edicion',
+            preserveNullAndEmptyArrays: true
+        }
+    }];
+
+    const autor = await db.collection('Copia').aggregate(query).toArray();
+
+    return autor;
 }
 
 module.exports = {
-    getCopiaes,
+    getCopias,
+    getCopia,
     addCopia,
     updateCopia,
     deleteCopia

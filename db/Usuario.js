@@ -51,12 +51,36 @@ const getUsuarios = async () => {
     return Usuarios;
 }
 
-const getUsuario = async () => {
-    
+const getUsuario = async (id) => {
+    const db = await getConexionDB();
+
+    const query = [{
+        $match: {
+            _id: ObjectId(id)
+        }
+    },{
+        $lookup: {
+            from: 'Libro',
+            localField: 'libro',
+            foreignField: '_id',
+            as: 'libro'
+        },
+        
+    }, {
+        $unwind: {
+            path: '$libro',
+            preserveNullAndEmptyArrays: true
+        }
+    }];
+
+    const usuario = await db.collection('Usuario').find().toArray();
+
+    return usuario;
 }
 
 module.exports = {
     getUsuarios,
+    getUsuario,
     addUsuario,
     updateUsuario,
     deleteUsuario

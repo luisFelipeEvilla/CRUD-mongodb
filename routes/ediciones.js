@@ -10,6 +10,14 @@ router.get('/', async (req, res) => {
     res.send(ediciones).status(200);
 });
 
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    const edicion = await Edicion.getEdicion(id);
+
+    res.send(edicion).status(200);
+});
+
 router.post('/', async (req, res) => {
     const { ...edicion } = req.body;
 
