@@ -10,6 +10,8 @@ const prestamos = require('./routes/prestamos');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.use(express.json());
 app.use('/autores',autores);
 app.use('/libros', libros);
@@ -19,7 +21,7 @@ app.use('/usuarios', usuarios);
 app.use('/prestamos', prestamos);
 
 app.get('/', (req,res) => {
-    res.send("Hello world").status(200);
+    res.render('pages/home');
 })
 
 app.listen(PORT, (err) => {
