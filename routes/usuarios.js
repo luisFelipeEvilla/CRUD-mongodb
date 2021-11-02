@@ -57,9 +57,10 @@ router.get('/:id', async (req, res) => {
     const { id } = req.params;
 
     const usuario = await Usuario.getUsuario(id);
-
-    
-    res.send(usuario).status(200);
+  
+    res.render('pages/usuarios/prestamos.ejs', {
+        usuario
+    });
 });
 
 router.post('/', async (req, res) => {
