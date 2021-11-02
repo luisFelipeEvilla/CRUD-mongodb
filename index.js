@@ -12,13 +12,12 @@ const cors = require('cors');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.use(cors({
     origin: '*'
 }));
 
-const app = express();
-
-app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}))

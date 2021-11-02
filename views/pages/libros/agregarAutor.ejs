@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+<body>
+
+<header>
+  <%- include('../../partials/header'); %>
+</header>
+
+<main>
+    <div class="container" style="padding-top: 20px; max-width: 500px;">
+      <form action="/libros/<%= libro[0]._id %>/autores" method="POST" enctype="application/x-www-form-urlencoded">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Id del autor</label>
+          <input type="text" class="form-control" id="autor" name="autor">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% 
+                let contador = 1;
+
+                autores.forEach(autor => { %>
+                <tr>
+                    <td><%= contador++ %></td>
+                    <td><%= autor._id %></td>
+                    <td><%= autor.nombre %> </td>                
+          </tr>
+           <% }); %> 
+          <tr>
+        </tbody>
+      </table>
+    </div>
+</main>
+</body>
+</html>

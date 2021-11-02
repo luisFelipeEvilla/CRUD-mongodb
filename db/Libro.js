@@ -98,8 +98,8 @@ const getLibro = async (id) => {
 const addAutor = async (idAutor, idLibro) => {
     const db = await getConexionDB();
 
-    idAutor = ObjectId(idAutor);
-    idLibro = ObjectId(idLibro);
+    idAutor = ObjectId(idAutor.trim());
+    idLibro = ObjectId(idLibro.trim());
 
     const result = await db.collection('Autorea').insertOne({ autor: idAutor, libro: idLibro })
 
