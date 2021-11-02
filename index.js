@@ -7,12 +7,15 @@ const ediciones = require('./routes/ediciones');
 const copias = require('./routes/copias');
 const usuarios = require('./routes/usuarios');
 const prestamos = require('./routes/prestamos');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}))
+
 app.use('/autores',autores);
 app.use('/libros', libros);
 app.use('/ediciones', ediciones);
