@@ -81,12 +81,21 @@ const getLibro = async (id) => {
             localField: 'autoreas.autor',
             foreignField: '_id',
             as: 'autores'
+        },
+
+    }, {
+        $lookup: {
+            from: 'Edicion',
+            localField: '_id',
+            foreignField: 'libro',
+            as: 'ediciones'
         }
     }, {
         $project: {
             _id: 1,
             titulo: 1,
-            autores: 1
+            autores: 1,
+            ediciones: 1
         }
     }];
 

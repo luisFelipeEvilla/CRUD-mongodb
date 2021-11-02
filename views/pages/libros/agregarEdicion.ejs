@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+<body>
+
+<header>
+  <%- include('../../partials/header'); %>
+</header>
+
+<main>
+    <div class="container" style="padding-top: 20px; max-width: 500px;">
+      <form action="/libros/<%= libro[0]._id %>/ediciones" method="POST" enctype="application/x-www-form-urlencoded">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">ISBN</label>
+          <input type="text" class="form-control" id="autor" name="isbn">
+          <label for="nombre" class="form-label">Año</label>
+          <input type="text" class="form-control" id="autor" name="ano">
+          <label for="nombre" class="form-label">Idioma</label>
+          <input type="text" class="form-control" id="autor" name="idioma">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+</main>
+</body>
+</html>

@@ -48,6 +48,13 @@ const getEdiciones = async () => {
             path: '$libro',
             preserveNullAndEmptyArrays: true
         }
+    }, {
+        $lookup: {
+            from: 'Copia',
+            localField: '_id',
+            foreignField: 'edicion',
+            as: 'copias'
+        }
     }];
 
     const Ediciones = await db.collection('Edicion').aggregate(query).toArray();
@@ -74,6 +81,13 @@ const getEdicion = async (id) => {
         $unwind: {
             path: '$libro',
             preserveNullAndEmptyArrays: true
+        }
+    }, {
+        $lookup: {
+            from: 'Copia',
+            localField: '_id',
+            foreignField: 'edicion',
+            as: 'copias'
         }
     }];
 

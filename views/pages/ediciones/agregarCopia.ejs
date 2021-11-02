@@ -11,10 +11,10 @@
 
 <main>
     <div class="container" style="padding-top: 20px; max-width: 500px;">
-      <form action="../<%= libro[0]._id %>/actualizar" method="POST" enctype="application/x-www-form-urlencoded">
+      <form action="/ediciones/<%= edicion[0]._id %>/copias" method="POST" enctype="application/x-www-form-urlencoded">
         <div class="mb-3">
-          <label for="nombre" class="form-label">Titulo</label>
-          <input type="text" class="form-control" id="nombre" name="titulo" value="<%= libro[0].titulo%>">
+          <label for="nombre" class="form-label">Número</label>
+          <input type="text" class="form-control" id="autor" name="numero">
         </div>
         <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
