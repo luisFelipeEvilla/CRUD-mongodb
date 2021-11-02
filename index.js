@@ -7,10 +7,15 @@ const ediciones = require('./routes/ediciones');
 const copias = require('./routes/copias');
 const usuarios = require('./routes/usuarios');
 const prestamos = require('./routes/prestamos');
+const cors = require('cors');
 
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+    origin: '*'
+}));
+
 app.use('/autores',autores);
 app.use('/libros', libros);
 app.use('/ediciones', ediciones);
