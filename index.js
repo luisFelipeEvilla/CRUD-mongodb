@@ -7,14 +7,22 @@ const ediciones = require('./routes/ediciones');
 const copias = require('./routes/copias');
 const usuarios = require('./routes/usuarios');
 const prestamos = require('./routes/prestamos');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
 
-app.use(express.json());
 app.use(cors({
     origin: '*'
 }));
+
+const app = express();
+
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}))
+
 
 app.use('/autores',autores);
 app.use('/libros', libros);
@@ -24,7 +32,7 @@ app.use('/usuarios', usuarios);
 app.use('/prestamos', prestamos);
 
 app.get('/', (req,res) => {
-    res.send("Hello world").status(200);
+    res.render('pages/home');
 })
 
 app.listen(PORT, (err) => {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <div class="container">
+
+        <div class="row justify-content-around align-items-center" style="padding-top: 20px">
+            <div class="card col-4" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Usuarios</h5>
+                  <p class="card-text">Hecha un vistazo a la lista de usuarios registrados en nuestro sistema</p>
+                  <a href="/usuarios" class="card-link">Lista de usuarios</a>
+                </div>
+            </div>
+        
+            <div class="card col-4" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Libros</h5>
+                  <p class="card-text">Contamos con una amplia colección de libros</p>
+                  <a href="/libros" class="card-link">Lista de libros</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-around" style="padding-top: 20px">
+            <div class="card col-4" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Autores</h5>
+                  <p class="card-text">Mira todos los autores de nuestros libros</p>
+                  <a href="/autores" class="card-link">Lista de autores</a>
+                </div>
+            </div>
+        
+            <div class="card col-4" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Prestamos</h5>
+                  <p class="card-text">Realizamos prestamos a todos nuestros afiliados</p>
+                  <a href="/prestamos" class="card-link">Lista de prestamos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
