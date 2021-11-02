@@ -17,6 +17,11 @@ const addPrestamo = async (prestamo) => {
 const updatePrestamo = async (id, prestamo) => {
     const db = await getConexionDB();
 
+    prestamo.fecha_devolucion = new Date(prestamo.fecha_devolucion).toISOString();
+    prestamo.fecha_prestamo = new Date(prestamo.fecha_prestamo).toISOString();
+    prestamo.usuario = ObjectId(prestamo.usuario);
+    prestamo.copia = ObjectId(prestamo.copia);
+
     const result = await db.collection('Prestamo').updateOne({ _id: ObjectId(id) }, { $set: { ...prestamo } })
 
     return result;

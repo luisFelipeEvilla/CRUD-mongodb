@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+<body>
+
+<header>
+  <%- include('../../partials/header'); %>
+</header>
+
+<main>
+    <div class="container" style="padding-top: 20px;">
+      <h3>Información del prestamo</h3>
+      <div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <h4>Copia</h4>
+        </div>
+          <table class="table">
+              <thead>
+                  <th scope="col-4">Número de Copia</th>
+                  <th scope="col-4">Libro</th>
+                  <th scope="col-4">ISBN</th>
+                  <th scope="col-4">Año</th>
+                  <th scope="col-4">idioma</th>
+                </tr>
+              </thead>
+              <tbody>
+                    <td><%= prestamo[0].copia.numero %></td>
+                    <td><%= prestamo[0].libro.titulo %></td>
+                    <td><%= prestamo[0].edicion.isbn %></td>
+                    <td><%= prestamo[0].edicion.ano %></td>
+                    <td><%= prestamo[0].edicion.idioma %></td>
+              </tbody>
+            </table>
+      </div>
+    </div>
+</main>
+</body>
+</html>

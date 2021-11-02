@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+<body>
+
+<header>
+  <%- include('../../partials/header'); %>
+</header>
+
+<main>
+    <div class="container" style="padding-top: 20px; max-width: 500px;">
+      <form action="/prestamos" method="POST" enctype="application/x-www-form-urlencoded">
+        <div class="mb-3">
+            <label for="usuario" class="form-label">ID de Usuario</label>
+            <input type="text" class="form-control" id="usuario" name="usuario">
+        </div>
+        <div class="mb-3">
+            <label for="copia" class="form-label">ID de Copia</label>
+            <input type="text" class="form-control" id="copia" name="copia">
+        </div>  
+        <div class="mb-3">
+          <label for="fecha_prestamo" class="form-label">fecha_prestamo</label>
+          <input type="text" class="form-control" id="fecha_prestamo" placeholder="año/mes/dia" name="fecha_prestamo">
+        </div>
+        <div class="mb-3">
+          <label for="fecha_devolucion" class="form-label">fecha_devolucion</label>
+          <input type="text" class="form-control" id="fecha_devolucion" placeholder="año/mes/dia" name="fecha_devolucion">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+
+    <div class="row" style="padding: 0 10px 0 20px;">
+        <div class="col-6">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <h3>Usuarios</h3>
+              </div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">RUT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% 
+                            let contador = 1;
+        
+                            
+                            usuarios.forEach(usuario => { %>
+                            <tr>
+                                <td><%= contador++ %></td>
+                                <td><%= usuario._id %></td>
+                                <td><%= usuario.nombre %></td>
+                                <td><%= usuario.RUT %> </td>                 
+                      </tr>
+                       <% }); %> 
+                      <tr>
+                    </tbody>
+                  </table>
+        </div>
+
+        <div class="col-6">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <h3>Copias</h3>
+            </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">id</th>
+                <th scope="col">Titulo del libro</th>
+                <th scope="col">numero de copia</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% 
+                    let contador2 = 1;
+
+                    
+                    copias.forEach(copia => { %>
+                    <tr>
+                        <td><%= contador++ %></td>
+                        <td><%= copia._id %></td>
+                        <td><%= copia.libro.titulo %></td>
+                        <td><%= copia.numero %></td>                   
+              </tr>
+               <% }); %> 
+              <tr>
+            </tbody>
+          </table>    
+        </div>
+    </div>
+</main>
+</body>
+</html>
