@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+<body>
+
+<header>
+  <%- include('../../partials/header'); %>
+</header>
+
+<main>
+    <div class="container" style="padding-top: 20px;">
+      <h3><%= autores[0].nombre %></h3>
+      <div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <h4>Libros</h4>
+          <a href="<%= autores[0]._id %>/agregarLibro" class="btn btn-success btn" role="button" aria-disabled="true">Agregar Libro</a>
+        </div>
+          <table class="table">
+              <thead>
+                  <th scope="col-4">#</th>
+                  <th scope="col-4">Nombre</th>
+                  <th scope="col-4">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% 
+                      let contador = 1;
+  
+                      autores[0].libros.forEach(libro => { %>
+                      <tr>
+                          <td><%= contador++ %></td>
+                          <td><%= libro.titulo %></td>                        
+                          <td><a href="./<%= autores[0]._id %>/eliminarLibro/<%= libro._id %>" class="btn btn-danger">Eliminar</a></td>                        
+                      </tr>
+                 <% }); %> 
+              </tbody>
+            </table>
+      </div>
+      
+      
+    </div>
+</main>
+</body>
+</html>

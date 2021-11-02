@@ -94,7 +94,7 @@ router.post('/:id/actualizar', async (req, res) => {
 
     const resultado = await Libro.updateLibro(id, titulo)
 
-    res.redirect('/libros/' + id)
+    res.redirect('/libros/')
 })
 
 router.post('/:id/autores', async (req, res) => {
